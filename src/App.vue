@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         ...mapGetters(['checkButtonTranslation', 'isActive']),
-        ...mapState(['current', 'total']),
+        ...mapState(['currentTurn', 'total']),
     },
 };
 </script>
