@@ -1,0 +1,19 @@
+@mixin limit-to($width) {
+    max-width: $width;
+    width: 100%;
+}
+
+@mixin hlh($h) {
+    height: $h;
+    line-height: $h;
+}
+
+@mixin size($w, $h) {
+    width: $w;
+    height: $h;
+}
+
+@mixin button-reset {
+    border: 0;
+    cursor: pointer;
+}
