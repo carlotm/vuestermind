@@ -33,6 +33,7 @@ export default {
 
 #board {
     @include limit-to(242px);
+    @include main-shadow;
     background-color: $white;
     border-radius: $bd;
     display: flex;

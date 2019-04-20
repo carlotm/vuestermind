@@ -1,10 +1,15 @@
 <template>
-    <button id="check">Check</button>
+    <button id="check" @click="checkTurn">Check</button>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     name: 'Check',
+    methods: {
+        ...mapActions(['checkTurn']),
+    },
 };
 </script>
 
@@ -15,6 +20,7 @@ export default {
 #check {
     @include hlh($h);
     @include button-reset;
+    @include main-shadow;
     border-radius: $bd;
     background-color: $fiorentina;
     padding-left: $h / 2;
@@ -24,8 +30,9 @@ export default {
     font-size: 24px;
     position: absolute;
     text-transform: uppercase;
-    bottom: $aria;
-    right: -$aria;
-    transform: translateX(100%);
+    bottom: 0;
+    right: -$aria * 2;
+    margin: $aria;
+    transition: transform 0.4s ease;
 }
 </style>

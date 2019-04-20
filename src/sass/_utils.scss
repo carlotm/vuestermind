@@ -17,3 +17,7 @@
     border: 0;
     cursor: pointer;
 }
+
+@mixin main-shadow {
+    box-shadow: $main-shadow;
+}

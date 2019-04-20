@@ -13,11 +13,13 @@
             <Feedback />
             <Feedback />
         </section>
-        <Check />
+        <Check v-bind:style="{ transform: checkButtonTranslation }" />
     </main>
 </template>
 
 <script>
+import { mapGetters, mapState } from 'vuex';
+
 import Board from './components/Board.vue';
 import Feedback from './components/Feedback.vue';
 import Check from './components/Check.vue';
@@ -28,6 +30,10 @@ export default {
         Board,
         Feedback,
         Check,
+    },
+    computed: {
+        ...mapGetters(['checkButtonTranslation']),
+        ...mapState(['nturn']),
     },
 };
 </script>
@@ -47,6 +53,7 @@ export default {
 
 #feedbacks {
     @include limit-to($h + ($aria * 2));
+    @include main-shadow;
     background-color: $sand;
     border-radius: 0 $bd $bd 0;
     position: absolute;
