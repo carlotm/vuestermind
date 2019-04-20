@@ -3,6 +3,7 @@
         class="pippolo"
         @click="loopColor"
         v-bind:style="{ backgroundColor: colors[colorIndex] }"
+        v-bind:disabled="isDisabled"
     ></button>
 </template>
 
@@ -11,6 +12,12 @@ import { mapState } from 'vuex';
 
 export default {
     name: 'Pippolo',
+    props: {
+        isDisabled: {
+            type: Boolean,
+            default: true,
+        },
+    },
     data: () => {
         return {
             colorIndex: -1,
@@ -38,5 +45,9 @@ export default {
     border: 0;
     border-radius: $h;
     background-color: $sand;
+
+    &:disabled {
+        cursor: not-allowed;
+    }
 }
 </style>

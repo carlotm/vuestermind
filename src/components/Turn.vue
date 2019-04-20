@@ -1,19 +1,31 @@
 <template>
     <section class="turn">
-        <Pippolo />
-        <Pippolo />
-        <Pippolo />
-        <Pippolo />
+        <Pippolo
+            v-for="x in 4"
+            v-bind:key="x"
+            v-bind:isDisabled="index !== currentTurn"
+        />
     </section>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 import Pippolo from './Pippolo.vue';
 
 export default {
     name: 'Turn',
+    props: {
+        index: {
+            type: Number,
+            required: true,
+        },
+    },
     components: {
         Pippolo,
+    },
+    computed: {
+        ...mapState(['currentTurn']),
     },
 };
 </script>

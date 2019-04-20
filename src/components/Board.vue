@@ -4,7 +4,8 @@
         <Turn
             v-for="turn in total"
             v-bind:class="{ active: isActive(total - turn) }"
-            v-bind:key="total - turn"
+            v-bind:key="total - turn + 1"
+            v-bind:index="total - turn + 1"
         />
     </section>
 </template>
