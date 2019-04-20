@@ -28,5 +28,11 @@ export default {
     margin-top: $aria;
     display: flex;
     justify-content: space-between;
+    transition: opacity 0.4s ease;
+    opacity: 0.2;
+
+    &.active {
+        opacity: 1;
+    }
 }
 </style>

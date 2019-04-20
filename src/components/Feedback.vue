@@ -23,6 +23,12 @@ export default {
     margin-top: $aria;
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
+    transition: opacity 0.4s ease;
+    opacity: 0.1;
+
+    &.active {
+        opacity: 1;
+    }
 }
 
 .led {

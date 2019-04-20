@@ -2,16 +2,11 @@
     <main id="app">
         <Board />
         <section id="feedbacks">
-            <Feedback />
-            <Feedback />
-            <Feedback />
-            <Feedback />
-            <Feedback />
-            <Feedback />
-            <Feedback />
-            <Feedback />
-            <Feedback />
-            <Feedback />
+            <Feedback
+                v-for="turn in total"
+                v-bind:class="{ active: isActive(total - turn) }"
+                v-bind:key="total - turn"
+            />
         </section>
         <Check v-bind:style="{ transform: checkButtonTranslation }" />
     </main>
@@ -32,8 +27,8 @@ export default {
         Check,
     },
     computed: {
-        ...mapGetters(['checkButtonTranslation']),
-        ...mapState(['nturn']),
+        ...mapGetters(['checkButtonTranslation', 'isActive']),
+        ...mapState(['current', 'total']),
     },
 };
 </script>
@@ -56,10 +51,10 @@ export default {
     @include main-shadow;
     background-color: $sand;
     border-radius: 0 $bd $bd 0;
+    padding-bottom: $aria;
     position: absolute;
-    bottom: 0;
+    top: $aria + $h;
     right: 0;
     z-index: -1;
-    height: ($aria * 11) + ($h * 10);
 }
 </style>
