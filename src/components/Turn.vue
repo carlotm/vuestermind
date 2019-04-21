@@ -42,7 +42,7 @@ export default {
     display: flex;
     justify-content: space-between;
     transition: opacity 0.4s ease;
-    opacity: 0.2;
+    opacity: 0.1;
 
     &.active {
         opacity: 1;

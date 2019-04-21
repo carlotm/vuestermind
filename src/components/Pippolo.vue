@@ -54,6 +54,11 @@ export default {
     border: 0;
     border-radius: $h;
     background-color: $sand;
+    background-image: radial-gradient(
+        circle,
+        rgba($black, 0) 30%,
+        rgba($black, 0.2) 100%
+    );
 
     &:disabled {
         cursor: not-allowed;
