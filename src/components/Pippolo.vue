@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
     name: 'Pippolo',
@@ -16,6 +16,10 @@ export default {
         isDisabled: {
             type: Boolean,
             default: true,
+        },
+        index: {
+            type: Number,
+            required: true,
         },
     },
     data: () => {
@@ -27,9 +31,14 @@ export default {
         ...mapState(['colors']),
     },
     methods: {
+        ...mapActions(['updateCurrentTurn']),
         loopColor() {
             this.colorIndex =
                 this.colorIndex === this.colors.length - 1 ? 0 : ++this.colorIndex;
+            this.updateCurrentTurn({
+                index: this.index - 1,
+                colorIndex: this.colorIndex,
+            });
         },
     },
 };

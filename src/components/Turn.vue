@@ -3,7 +3,8 @@
         <Pippolo
             v-for="x in 4"
             v-bind:key="x"
-            v-bind:isDisabled="index !== currentTurn"
+            v-bind:isDisabled="index !== current"
+            v-bind:index="x"
         />
     </section>
 </template>
@@ -25,7 +26,7 @@ export default {
         Pippolo,
     },
     computed: {
-        ...mapState(['currentTurn']),
+        ...mapState(['current']),
     },
 };
 </script>

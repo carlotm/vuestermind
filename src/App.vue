@@ -28,7 +28,7 @@ export default {
     },
     computed: {
         ...mapGetters(['checkButtonTranslation', 'isActive']),
-        ...mapState(['currentTurn', 'total']),
+        ...mapState(['current', 'total']),
     },
     methods: {
         ...mapActions(['generateSecret']),
