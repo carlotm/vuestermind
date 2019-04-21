@@ -1,5 +1,7 @@
 # vuestermind
 
+A master mind game made in Vue.
+
 ## Project setup
 ```
 npm install
@@ -10,25 +12,9 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+And then visit [http://localhost:8080](http://localhost:8080)
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Run your unit tests
+### Run unit tests
 ```
 npm run test:unit
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
