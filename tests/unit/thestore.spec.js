@@ -19,6 +19,7 @@ describe('Actions', () => {
     afterEach(() => {
         store.state.current = 1;
         store.state.currentTurn = [-1, -1, -1, -1];
+        store.state.won = false;
     });
 
     it('increments the current turn', async () => {
@@ -75,5 +76,14 @@ describe('Actions', () => {
         expect(store.getters.isCurrentTurnValid).toEqual(false);
         await store.dispatch('updateCurrentTurn', {index: 0, colorIndex: 3});
         expect(store.getters.isCurrentTurnValid).toEqual(false);
+    });
+
+    it('check if the user won', async () => {
+        store.state.secret = new Set([2, 4, 0, 3]);
+        store.state.currentTurn = [2, 4, 0, 3];
+        await store.dispatch('checkTurn');
+        store.state.currentTurn = [2, 1, 0, 3];
+        await store.dispatch('checkTurn');
+        expect(store.state.won).toEqual(false);
     });
 });

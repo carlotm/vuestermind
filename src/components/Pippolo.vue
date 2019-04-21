@@ -19,7 +19,10 @@ export default {
         },
         index: {
             type: Number,
-            required: true,
+        },
+        color: {
+            type: Number,
+            default: -1,
         },
     },
     data: () => {
@@ -41,6 +44,9 @@ export default {
             });
         },
     },
+    mounted() {
+        if (this.color > -1) this.colorIndex = this.color;
+    },
 };
 </script>
 
@@ -54,11 +60,7 @@ export default {
     border: 0;
     border-radius: $h;
     background-color: $sand;
-    background-image: radial-gradient(
-        circle,
-        rgba($black, 0) 30%,
-        rgba($black, 0.2) 100%
-    );
+    box-shadow: inset 0 0 4px 0 rgba($black, 0.2);
 
     &:disabled {
         cursor: not-allowed;

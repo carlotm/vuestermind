@@ -9,6 +9,7 @@ export const state = {
     colors: ['#2A68CD', '#2ACD76', '#EE9016', '#AC34CF', '#D71834', '#FFF800'],
     secret: new Set(),
     currentTurn: [-1, -1, -1, -1],
+    won: false,
 };
 
 export const getters = {
@@ -24,6 +25,7 @@ export const getters = {
 
         return state.currentTurn.length === new Set(state.currentTurn).size;
     },
+    secretAsArray: state => [...state.secret],
 };
 
 export const mutations = {
@@ -31,6 +33,7 @@ export const mutations = {
         state.secret = payload;
     },
     RESET_TURN(state) {
+        state.won = false;
         state.currentTurn = [-1, -1, -1, -1];
     },
     INCREMENT_TURN(state) {
@@ -38,6 +41,9 @@ export const mutations = {
     },
     UPDATE_CURRENT_TURN(state, payload) {
         state.currentTurn.splice(payload.index, 1, payload.colorIndex);
+    },
+    WON(state) {
+        state.won = true;
     },
 };
 
@@ -49,8 +55,11 @@ export const actions = {
         context.commit('GENERATE_SECRET', s);
     },
     checkTurn: context => {
+        const secretArray = [...context.state.secret];
+        const win = context.state.currentTurn.findIndex((x, i) => x !== secretArray[i]);
+
         context.commit('RESET_TURN');
-        context.commit('INCREMENT_TURN');
+        context.commit(win === -1 ? 'WON' : 'INCREMENT_TURN');
     },
     updateCurrentTurn: (context, payload) => {
         context.commit('UPDATE_CURRENT_TURN', payload);
