@@ -82,8 +82,18 @@ describe('Actions', () => {
         store.state.secret = new Set([2, 4, 0, 3]);
         store.state.currentTurn = [2, 4, 0, 3];
         await store.dispatch('checkTurn');
+        expect(store.state.won).toEqual(true);
         store.state.currentTurn = [2, 1, 0, 3];
         await store.dispatch('checkTurn');
         expect(store.state.won).toEqual(false);
+    });
+
+    it('check if the user lose', async () => {
+        store.state.secret = new Set([2, 4, 0, 3]);
+        for (let i = 0; i < 10; i++) {
+            store.state.currentTurn = [2, 1, 0, 3];
+            await store.dispatch('checkTurn');
+        }
+        expect(store.state.lost).toEqual(true);
     });
 });

@@ -10,6 +10,7 @@ export const state = {
     secret: new Set(),
     currentTurn: [-1, -1, -1, -1],
     won: false,
+    lost: false,
 };
 
 export const getters = {
@@ -34,6 +35,7 @@ export const mutations = {
     },
     RESET_TURN(state) {
         state.won = false;
+        state.lost = false;
         state.currentTurn = [-1, -1, -1, -1];
     },
     INCREMENT_TURN(state) {
@@ -44,6 +46,9 @@ export const mutations = {
     },
     WON(state) {
         state.won = true;
+    },
+    LOST(state) {
+        state.lost = true;
     },
 };
 
@@ -59,7 +64,11 @@ export const actions = {
         const win = context.state.currentTurn.findIndex((x, i) => x !== secretArray[i]);
 
         context.commit('RESET_TURN');
-        context.commit(win === -1 ? 'WON' : 'INCREMENT_TURN');
+        if (win === -1) context.commit('WON');
+        else
+            context.commit(
+                context.state.current === context.state.total ? 'LOST' : 'INCREMENT_TURN',
+            );
     },
     updateCurrentTurn: (context, payload) => {
         context.commit('UPDATE_CURRENT_TURN', payload);

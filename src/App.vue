@@ -10,6 +10,7 @@
         </section>
         <Check v-bind:style="{ transform: checkButtonTranslation }" />
         <WinDialog v-if="won" />
+        <LoseDialog v-if="lost" />
     </main>
 </template>
 
@@ -20,6 +21,7 @@ import Board from './components/Board.vue';
 import Feedback from './components/Feedback.vue';
 import Check from './components/Check.vue';
 import WinDialog from './components/WinDialog.vue';
+import LoseDialog from './components/LoseDialog.vue';
 
 export default {
     name: 'app',
@@ -28,10 +30,11 @@ export default {
         Feedback,
         Check,
         WinDialog,
+        LoseDialog,
     },
     computed: {
         ...mapGetters(['checkButtonTranslation', 'isActive']),
-        ...mapState(['current', 'total', 'won']),
+        ...mapState(['current', 'total', 'won', 'lost']),
     },
     methods: {
         ...mapActions(['generateSecret']),
