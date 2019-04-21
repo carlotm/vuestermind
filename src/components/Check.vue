@@ -1,14 +1,19 @@
 <template>
-    <button id="check" @click="checkTurn">Check</button>
+    <button id="check" @click="checkTurn" v-bind:disabled="!isCurrentTurnValid">
+        Check
+    </button>
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
     name: 'Check',
     methods: {
         ...mapActions(['checkTurn']),
+    },
+    computed: {
+        ...mapGetters(['isCurrentTurnValid']),
     },
 };
 </script>
@@ -33,6 +38,12 @@ export default {
     bottom: 0;
     right: -$aria * 2;
     margin: $aria;
-    transition: transform 0.4s ease;
+    opacity: 1;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.2;
+    }
 }
 </style>

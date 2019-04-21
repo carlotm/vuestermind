@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-import { actions, mutations, state } from '@/store';
+import { actions, mutations, getters, state } from '@/store';
 
 describe('Actions', () => {
     let store;
@@ -12,7 +12,13 @@ describe('Actions', () => {
             state,
             mutations,
             actions,
+            getters,
         });
+    });
+
+    afterEach(() => {
+        store.state.current = 1;
+        store.state.currentTurn = [-1, -1, -1, -1];
     });
 
     it('increments the current turn', async () => {
@@ -32,5 +38,36 @@ describe('Actions', () => {
         expect(store.state.currentTurn).toMatchObject([-1, 5, -1, -1]);
         await store.dispatch('updateCurrentTurn', {index: 3, colorIndex: 3});
         expect(store.state.currentTurn).toMatchObject([-1, 5, -1, 3]);
+    });
+
+    it('translation CSS property of the check button', async () => {
+        expect(store.getters.checkButtonTranslation)
+            .toEqual('translate(100%, calc(-0% - 0px))');
+        store.state.current = 6;
+        expect(store.getters.checkButtonTranslation)
+            .toEqual('translate(100%, calc(-500% - 50px))');
+        store.state.current = 3;
+        expect(store.getters.checkButtonTranslation)
+            .toEqual('translate(100%, calc(-200% - 20px))');
+    });
+
+    it('check if the turn is active', async () => {
+        expect(store.getters.isActive(0)).toEqual(true);
+        expect(store.getters.isActive(5)).toEqual(false);
+        store.state.current = 6;
+        expect(store.getters.isActive(5)).toEqual(true);
+        expect(store.getters.isActive(3)).toEqual(true);
+        expect(store.getters.isActive(8)).toEqual(false);
+    });
+
+    it('check if the turn is valid', async () => {
+        await store.dispatch('updateCurrentTurn', {index: 0, colorIndex: 1});
+        expect(store.getters.isCurrentTurnValid).toEqual(false);
+        await store.dispatch('updateCurrentTurn', {index: 1, colorIndex: 5});
+        expect(store.getters.isCurrentTurnValid).toEqual(false);
+        await store.dispatch('updateCurrentTurn', {index: 2, colorIndex: 3});
+        expect(store.getters.isCurrentTurnValid).toEqual(false);
+        await store.dispatch('updateCurrentTurn', {index: 3, colorIndex: 4});
+        expect(store.getters.isCurrentTurnValid).toEqual(true);
     });
 });

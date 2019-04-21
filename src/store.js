@@ -14,18 +14,21 @@ export const state = {
 export const getters = {
     checkButtonTranslation(state) {
         const y = (state.current - 1) * 100;
-        const offset = y / 10; // this works because the $aria is 10px in the sass
+        const offset = y / 10; // this works because $aria is 10px in the sass
         return `translate(100%, calc(-${y}% - ${offset}px))`;
     },
     isActive: state => x => x < state.current,
+    isCurrentTurnValid: state => state.currentTurn.filter(x => x === -1).length === 0,
 };
 
 export const mutations = {
     GENERATE_SECRET(state, payload) {
         state.secret = payload;
     },
-    INCREMENT_TURN(state) {
+    RESET_TURN(state) {
         state.currentTurn = [-1, -1, -1, -1];
+    },
+    INCREMENT_TURN(state) {
         state.current++;
     },
     UPDATE_CURRENT_TURN(state, payload) {
@@ -41,6 +44,7 @@ export const actions = {
         context.commit('GENERATE_SECRET', s);
     },
     checkTurn: context => {
+        context.commit('RESET_TURN');
         context.commit('INCREMENT_TURN');
     },
     updateCurrentTurn: (context, payload) => {
