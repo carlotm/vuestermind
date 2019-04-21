@@ -1,6 +1,6 @@
 <template>
     <section id="board">
-        <Secret />
+        <section id="secret"></section>
         <Turn
             v-for="turn in total"
             v-bind:class="{ active: isActive(total - turn) }"
@@ -13,13 +13,11 @@
 <script>
 import { mapGetters, mapState } from 'vuex';
 
-import Secret from './Secret.vue';
 import Turn from './Turn.vue';
 
 export default {
     name: 'Board',
     components: {
-        Secret,
         Turn,
     },
     computed: {
@@ -32,6 +30,13 @@ export default {
 <style lang="scss">
 @import '../sass/settings';
 @import '../sass/utils';
+
+#secret {
+    @include hlh($h);
+    border-radius: $bd;
+    background-color: $sand;
+    box-shadow: inset 0 0 4px 0 rgba($black, 0.2);
+}
 
 #board {
     @include limit-to(242px);
