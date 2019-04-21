@@ -1,7 +1,5 @@
 <template>
-    <button id="check" @click="checkTurn" v-bind:disabled="!isCurrentTurnValid">
-        Check
-    </button>
+    <button id="check" @click="checkTurn" v-bind:disabled="!isCurrentTurnValid"></button>
 </template>
 
 <script>
@@ -23,6 +21,10 @@ export default {
 @import '../sass/utils';
 
 #check {
+    @media only screen and (max-width: 767px) {
+        padding-left: $h / 4;
+        padding-right: $h / 4;
+    }
     @include hlh($h);
     @include button-reset;
     @include main-shadow;
@@ -40,6 +42,13 @@ export default {
     margin: $aria;
     opacity: 1;
     transition: transform 0.4s ease, opacity 0.4s ease;
+
+    &:before {
+        @media only screen and (max-width: 767px) {
+            content: '✓';
+        }
+        content: 'check';
+    }
 
     &:disabled {
         cursor: not-allowed;

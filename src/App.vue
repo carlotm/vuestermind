@@ -50,7 +50,6 @@ export default {
 
 #app {
     @include limit-to(290px);
-    margin: 20px auto;
     position: relative;
     z-index: 1;
 }
