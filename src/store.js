@@ -21,10 +21,8 @@ export const getters = {
 };
 
 export const mutations = {
-    GENERATE_SECRET(state) {
-        let s = new Set();
-        while (s.size !== 4) s.add(Math.round(Math.random() * (state.colors.length - 1)));
-        state.secret = s;
+    GENERATE_SECRET(state, payload) {
+        state.secret = payload;
     },
     INCREMENT_TURN(state) {
         state.currentTurn = [-1, -1, -1, -1];
@@ -37,7 +35,10 @@ export const mutations = {
 
 export const actions = {
     generateSecret: context => {
-        context.commit('GENERATE_SECRET');
+        let s = new Set();
+        while (s.size !== 4)
+            s.add(Math.round(Math.random() * (context.state.colors.length - 1)));
+        context.commit('GENERATE_SECRET', s);
     },
     checkTurn: context => {
         context.commit('INCREMENT_TURN');
