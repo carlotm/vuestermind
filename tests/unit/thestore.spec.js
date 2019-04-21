@@ -69,5 +69,11 @@ describe('Actions', () => {
         expect(store.getters.isCurrentTurnValid).toEqual(false);
         await store.dispatch('updateCurrentTurn', {index: 3, colorIndex: 4});
         expect(store.getters.isCurrentTurnValid).toEqual(true);
+
+        // 2 or more pippoli with the same color are not valid
+        await store.dispatch('updateCurrentTurn', {index: 3, colorIndex: 3});
+        expect(store.getters.isCurrentTurnValid).toEqual(false);
+        await store.dispatch('updateCurrentTurn', {index: 0, colorIndex: 3});
+        expect(store.getters.isCurrentTurnValid).toEqual(false);
     });
 });

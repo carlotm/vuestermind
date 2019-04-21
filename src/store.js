@@ -18,7 +18,12 @@ export const getters = {
         return `translate(100%, calc(-${y}% - ${offset}px))`;
     },
     isActive: state => x => x < state.current,
-    isCurrentTurnValid: state => state.currentTurn.filter(x => x === -1).length === 0,
+    isCurrentTurnValid(state) {
+        const missing = state.currentTurn.filter(x => x === -1);
+        if (missing.length > 0) return false;
+
+        return state.currentTurn.length === new Set(state.currentTurn).size;
+    },
 };
 
 export const mutations = {
