@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex';
+import { mapGetters, mapState, mapActions } from 'vuex';
 
 import Board from './components/Board.vue';
 import Feedback from './components/Feedback.vue';
@@ -29,6 +29,12 @@ export default {
     computed: {
         ...mapGetters(['checkButtonTranslation', 'isActive']),
         ...mapState(['currentTurn', 'total']),
+    },
+    methods: {
+        ...mapActions(['generateSecret']),
+    },
+    mounted() {
+        this.generateSecret();
     },
 };
 </script>
