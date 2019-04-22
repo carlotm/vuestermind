@@ -14,12 +14,14 @@ describe('Actions', () => {
             actions,
             getters,
         });
+        store.state.secret = [2, 1, 5, 3];
     });
 
     afterEach(() => {
         store.state.current = 1;
         store.state.currentTurn = [-1, -1, -1, -1];
         store.state.won = false;
+        store.state.lose = false;
     });
 
     it('increments the current turn', async () => {
@@ -30,7 +32,7 @@ describe('Actions', () => {
 
     it('generate a 4 digits code', async () => {
         await store.dispatch('generateSecret');
-        expect(store.state.secret.size).toEqual(4);
+        expect(store.state.secret).toHaveLength(4);
     });
 
     it('updates the current turn', async () => {
@@ -79,7 +81,7 @@ describe('Actions', () => {
     });
 
     it('check if the user won', async () => {
-        store.state.secret = new Set([2, 4, 0, 3]);
+        store.state.secret = [2, 4, 0, 3];
         store.state.currentTurn = [2, 4, 0, 3];
         await store.dispatch('checkTurn');
         expect(store.state.won).toEqual(true);
@@ -89,7 +91,7 @@ describe('Actions', () => {
     });
 
     it('check if the user lose', async () => {
-        store.state.secret = new Set([2, 4, 0, 3]);
+        store.state.secret = [2, 4, 0, 3];
         for (let i = 0; i < 10; i++) {
             store.state.currentTurn = [2, 1, 0, 3];
             await store.dispatch('checkTurn');

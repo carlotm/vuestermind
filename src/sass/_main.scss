@@ -22,3 +22,7 @@ body {
     flex-wrap: wrap;
     padding: 20px;
 }
+
+button {
+    @include button-reset;
+}

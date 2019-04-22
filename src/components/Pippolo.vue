@@ -31,7 +31,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(['colors']),
+        ...mapState(['colors', 'forceReset']),
     },
     methods: {
         ...mapActions(['updateCurrentTurn']),
@@ -42,6 +42,11 @@ export default {
                 index: this.index - 1,
                 colorIndex: this.colorIndex,
             });
+        },
+    },
+    watch: {
+        forceReset() {
+            this.colorIndex = -1;
         },
     },
     mounted() {

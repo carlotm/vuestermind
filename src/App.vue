@@ -9,8 +9,8 @@
             />
         </section>
         <Check v-bind:style="{ transform: checkButtonTranslation }" />
-        <WinDialog v-if="won" />
-        <LoseDialog v-if="lost" />
+        <Dialog v-if="won" status="happy" />
+        <Dialog v-if="lost" status="sad" />
     </main>
 </template>
 
@@ -20,8 +20,7 @@ import { mapGetters, mapState, mapActions } from 'vuex';
 import Board from './components/Board.vue';
 import Feedback from './components/Feedback.vue';
 import Check from './components/Check.vue';
-import WinDialog from './components/WinDialog.vue';
-import LoseDialog from './components/LoseDialog.vue';
+import Dialog from './components/Dialog.vue';
 
 export default {
     name: 'app',
@@ -29,8 +28,7 @@ export default {
         Board,
         Feedback,
         Check,
-        WinDialog,
-        LoseDialog,
+        Dialog,
     },
     computed: {
         ...mapGetters(['checkButtonTranslation', 'isActive']),

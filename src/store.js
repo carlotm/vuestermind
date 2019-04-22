@@ -6,11 +6,12 @@ Vue.use(Vuex);
 export const state = {
     total: 10,
     current: 1,
-    colors: ['#2A68CD', '#2ACD76', '#EE9016', '#AC34CF', '#D71834', '#FFF800'],
-    secret: new Set(),
     currentTurn: [-1, -1, -1, -1],
+    secret: [0, 1, 2, 3],
+    colors: ['#2A68CD', '#2ACD76', '#EE9016', '#AC34CF', '#D71834', '#FFF800'],
     won: false,
     lost: false,
+    forceReset: false,
 };
 
 export const getters = {
@@ -26,12 +27,13 @@ export const getters = {
 
         return state.currentTurn.length === new Set(state.currentTurn).size;
     },
-    secretAsArray: state => [...state.secret],
 };
 
 export const mutations = {
-    GENERATE_SECRET(state, payload) {
-        state.secret = payload;
+    GENERATE_SECRET(state) {
+        let s = new Set();
+        while (s.size !== 4) s.add(Math.round(Math.random() * (state.colors.length - 1)));
+        state.secret = [...s];
     },
     RESET_TURN(state) {
         state.won = false;
@@ -50,18 +52,25 @@ export const mutations = {
     LOST(state) {
         state.lost = true;
     },
+    RESET_GAME(state) {
+        state.total = 10;
+        state.current = 1;
+        state.currentTurn = [-1, -1, -1, -1];
+        state.secret = [-2, -2, -2, -2];
+        state.won = false;
+        state.lost = false;
+        state.forceReset = !state.forceReset;
+    },
 };
 
 export const actions = {
     generateSecret: context => {
-        let s = new Set();
-        while (s.size !== 4)
-            s.add(Math.round(Math.random() * (context.state.colors.length - 1)));
-        context.commit('GENERATE_SECRET', s);
+        context.commit('GENERATE_SECRET');
     },
     checkTurn: context => {
-        const secretArray = [...context.state.secret];
-        const win = context.state.currentTurn.findIndex((x, i) => x !== secretArray[i]);
+        const win = context.state.currentTurn.findIndex((x, i) => {
+            return x !== context.state.secret[i];
+        });
 
         context.commit('RESET_TURN');
         if (win === -1) context.commit('WON');
@@ -72,6 +81,10 @@ export const actions = {
     },
     updateCurrentTurn: (context, payload) => {
         context.commit('UPDATE_CURRENT_TURN', payload);
+    },
+    startNewGame: context => {
+        context.commit('RESET_GAME');
+        context.commit('GENERATE_SECRET');
     },
 };
 
