@@ -56,14 +56,14 @@ export const mutations = {
         state.lost = true;
     },
     RESET_GAME(state) {
-        state.total = 2;
+        state.total = TOTAL;
         state.current = 1;
-        state.currentTurn = [-1, -1, -1, -1];
-        state.secret = [-2, -2, -2, -2];
+        state.currentTurn = INIT_TURN;
+        state.secret = INIT_SECRET;
         state.won = false;
         state.lost = false;
+        state.feedback = Array.from(' '.repeat(TOTAL));
         state.forceReset = !state.forceReset;
-        state.feedback = Array.from(' '.repeat(state.total + 1));
     },
     FEEDBACK(state) {
         let fb = '';
