@@ -12,6 +12,7 @@
         <Check v-bind:style="{ transform: checkButtonTranslation }" />
         <Dialog v-if="won" status="happy" />
         <Dialog v-if="lost" status="sad" />
+        <Help @gotHelp="showHelp = false" v-bind:class="{ active: showHelp }" />
     </main>
 </template>
 
@@ -22,6 +23,7 @@ import Board from './components/Board.vue';
 import Feedback from './components/Feedback.vue';
 import Check from './components/Check.vue';
 import Dialog from './components/Dialog.vue';
+import Help from './components/Help.vue';
 
 export default {
     name: 'app',
@@ -30,6 +32,12 @@ export default {
         Feedback,
         Check,
         Dialog,
+        Help,
+    },
+    data() {
+        return {
+            showHelp: true,
+        };
     },
     computed: {
         ...mapGetters(['checkButtonTranslation', 'isActive']),
