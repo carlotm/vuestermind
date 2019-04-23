@@ -9,6 +9,7 @@ body {
     min-height: 100%;
     font-family: $main-font;
     font-size: 16px;
+    font-weight: 500;
 }
 
 body {
@@ -35,16 +36,8 @@ header {
     top: 0;
     width: 100%;
     padding: $aria;
-    text-align: center;
-    color: darken($egg, 20);
-
-    h1 {
-        font-size: 48px;
-    }
-
-    h2 {
-        font-size: 32px;
-    }
+    color: $black;
+    font-size: 16px;
 }
 
 footer {
@@ -55,4 +48,9 @@ footer {
     bottom: 0;
     width: 100%;
     padding: $aria;
+
+    a,
+    a:visited {
+        color: $fiorentina;
+    }
 }
