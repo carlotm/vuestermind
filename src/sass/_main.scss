@@ -26,3 +26,33 @@ body {
 button {
     @include button-reset;
 }
+
+header {
+    @media only screen and (max-width: 767px) {
+        display: none;
+    }
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: $aria;
+    text-align: center;
+    color: darken($egg, 20);
+
+    h1 {
+        font-size: 48px;
+    }
+
+    h2 {
+        font-size: 32px;
+    }
+}
+
+footer {
+    @media only screen and (max-width: 767px) {
+        display: none;
+    }
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: $aria;
+}
