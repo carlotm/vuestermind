@@ -1,18 +1,20 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
+import { TOTAL, INIT_TURN, INIT_SECRET, INIT_FEEDBACK, COLORS } from './settings';
+
 Vue.use(Vuex);
 
 export const state = {
-    total: 10,
+    total: TOTAL,
     current: 1,
-    currentTurn: [-1, -1, -1, -1],
-    secret: [0, 1, 2, 3],
-    colors: ['#2A68CD', '#2ACD76', '#EE9016', '#AC34CF', '#D71834', '#FFF800'],
+    currentTurn: INIT_TURN,
+    secret: INIT_SECRET,
+    colors: COLORS,
     won: false,
     lost: false,
     forceReset: false,
-    feedback: Array.from(' '.repeat(11)),
+    feedback: INIT_FEEDBACK,
 };
 
 export const getters = {
@@ -54,7 +56,7 @@ export const mutations = {
         state.lost = true;
     },
     RESET_GAME(state) {
-        state.total = 10;
+        state.total = 2;
         state.current = 1;
         state.currentTurn = [-1, -1, -1, -1];
         state.secret = [-2, -2, -2, -2];

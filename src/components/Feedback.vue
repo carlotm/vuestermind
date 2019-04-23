@@ -12,13 +12,13 @@ export default {
     props: {
         fb: {
             type: String,
-            required: true,
         },
     },
     computed: {
         ...mapState(['current', 'currentTurn', 'feedback']),
         fbClass() {
             return x => {
+                if (this.fb === undefined) return null;
                 const fb = this.fb.trim()[x];
                 return fb === undefined ? null : `fb-${fb}`;
             };
