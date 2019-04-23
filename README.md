@@ -1,5 +1,7 @@
 # vuestermind
 
+[![pipeline status](https://gitlab.com/2pxsolidblack/vuestermind/badges/master/pipeline.svg)](https://gitlab.com/2pxsolidblack/vuestermind/commits/master)
+
 A master mind game made in Vue.
 
 ## Project setup

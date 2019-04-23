@@ -1,0 +1,14 @@
+image: node:latest
+
+stages:
+    - test
+
+test:
+    stage: test
+    before_script:
+        - npm install
+    script:
+        - npm run test:unit
+    artifacts:
+        paths:
+            - node_modules/
