@@ -98,4 +98,38 @@ describe('Actions', () => {
         }
         expect(store.state.lost).toEqual(true);
     });
+
+    it('gives correct feedback', async () => {
+        store.state.secret = [2, 4, 0, 3];
+
+        store.state.currentTurn = [5, 1, 0, 3];
+        await store.dispatch('getFeedback');
+        expect(store.state.feedback[store.state.current]).toHaveLength(2);
+        expect(store.state.feedback[store.state.current]).toEqual('11');
+
+        store.state.currentTurn = [2, 4, 0, 3];
+        await store.dispatch('getFeedback');
+        expect(store.state.feedback[store.state.current]).toHaveLength(4);
+        expect(store.state.feedback[store.state.current]).toEqual('1111');
+
+        store.state.currentTurn = [5, 2, 3, 1];
+        await store.dispatch('getFeedback');
+        expect(store.state.feedback[store.state.current]).toHaveLength(2);
+        expect(store.state.feedback[store.state.current]).toEqual('00');
+
+        store.state.currentTurn = [4, 2, 3, 0];
+        await store.dispatch('getFeedback');
+        expect(store.state.feedback[store.state.current]).toHaveLength(4);
+        expect(store.state.feedback[store.state.current]).toEqual('0000');
+
+        store.state.currentTurn = [2, 3, 4, 0];
+        await store.dispatch('getFeedback');
+        expect(store.state.feedback[store.state.current]).toHaveLength(4);
+        expect(store.state.feedback[store.state.current]).toEqual('1000');
+
+        store.state.currentTurn = [1, 5, 4, 3];
+        await store.dispatch('getFeedback');
+        expect(store.state.feedback[store.state.current]).toHaveLength(2);
+        expect(store.state.feedback[store.state.current]).toEqual('01');
+    });
 });

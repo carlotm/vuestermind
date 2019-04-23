@@ -12,6 +12,7 @@ export const state = {
     won: false,
     lost: false,
     forceReset: false,
+    feedback: Array.from(' '.repeat(11)),
 };
 
 export const getters = {
@@ -60,6 +61,18 @@ export const mutations = {
         state.won = false;
         state.lost = false;
         state.forceReset = !state.forceReset;
+        state.feedback = Array.from(' '.repeat(state.total + 1));
+    },
+    FEEDBACK(state) {
+        let fb = '';
+
+        for (let i = 0; i < state.currentTurn.length; i++) {
+            const found = state.secret.findIndex(x => x === state.currentTurn[i]);
+            if (found === -1) continue;
+            fb += found === i ? '1' : '0';
+        }
+
+        state.feedback[state.current] = fb;
     },
 };
 
@@ -72,12 +85,20 @@ export const actions = {
             return x !== context.state.secret[i];
         });
 
+        context.commit('FEEDBACK');
         context.commit('RESET_TURN');
-        if (win === -1) context.commit('WON');
-        else
-            context.commit(
-                context.state.current === context.state.total ? 'LOST' : 'INCREMENT_TURN',
-            );
+
+        if (win === -1) {
+            context.commit('WON');
+            return;
+        }
+
+        if (context.state.current === context.state.total) {
+            context.commit('LOST');
+            return;
+        }
+
+        context.commit('INCREMENT_TURN');
     },
     updateCurrentTurn: (context, payload) => {
         context.commit('UPDATE_CURRENT_TURN', payload);
@@ -85,6 +106,9 @@ export const actions = {
     startNewGame: context => {
         context.commit('RESET_GAME');
         context.commit('GENERATE_SECRET');
+    },
+    getFeedback: context => {
+        context.commit('FEEDBACK');
     },
 };
 

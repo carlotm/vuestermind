@@ -5,7 +5,8 @@
             <Feedback
                 v-for="turn in total"
                 v-bind:class="{ active: isActive(total - turn) }"
-                v-bind:key="total - turn"
+                v-bind:key="total - turn + 1"
+                v-bind:fb="feedback[total - turn + 1]"
             />
         </section>
         <Check v-bind:style="{ transform: checkButtonTranslation }" />
@@ -32,7 +33,7 @@ export default {
     },
     computed: {
         ...mapGetters(['checkButtonTranslation', 'isActive']),
-        ...mapState(['current', 'total', 'won', 'lost']),
+        ...mapState(['current', 'total', 'won', 'lost', 'feedback']),
     },
     methods: {
         ...mapActions(['generateSecret']),

@@ -1,15 +1,29 @@
 <template>
-    <section class="feedback">
-        <i class="led"></i>
-        <i class="led"></i>
-        <i class="led"></i>
-        <i class="led"></i>
-    </section>
+    <div class="feedback">
+        <i class="led" v-for="x in 4" v-bind:key="x" v-bind:class="fbClass(x - 1)"></i>
+    </div>
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
     name: 'Feedback',
+    props: {
+        fb: {
+            type: String,
+            required: true,
+        },
+    },
+    computed: {
+        ...mapState(['current', 'currentTurn', 'feedback']),
+        fbClass() {
+            return x => {
+                const fb = this.fb.trim()[x];
+                return fb === undefined ? null : `fb-${fb}`;
+            };
+        },
+    },
 };
 </script>
 
@@ -40,5 +54,21 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: all 0.4s;
+
+    &.fb-1,
+    &.fb-0 {
+        @include size(12px, 12px);
+    }
+
+    &.fb-1 {
+        background-color: $black;
+        box-shadow: 0 0 2px 2px rgba($black, 0.4);
+    }
+
+    &.fb-0 {
+        background-color: $mao;
+        box-shadow: 0 0 2px 2px rgba($mao, 0.4);
+    }
 }
 </style>
