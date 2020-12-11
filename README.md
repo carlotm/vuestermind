@@ -1,6 +1,6 @@
 # vuestermind
 
-[![pipeline status](https://gitlab.com/2pxsolidblack/vuestermind/badges/master/pipeline.svg)](https://gitlab.com/2pxsolidblack/vuestermind/commits/master)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/970bb13e-0fd0-4047-b72f-250fe3456255/deploy-status)](https://app.netlify.com/sites/vuestermind/deploys)
 
 A master mind game made in Vue.
 
