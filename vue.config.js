@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: process.env.NODE_ENV === 'production' ? '/vuestermind/' : '/',
+    publicPath: '/',
     productionSourceMap: false,
     configureWebpack: {
         entry: ['./src/main.js',],
