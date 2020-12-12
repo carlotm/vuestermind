@@ -4,6 +4,8 @@
 
 A master mind game made in Vue.
 
+https://vuestermind.netlify.app/
+
 ## Project setup
 ```
 npm install
