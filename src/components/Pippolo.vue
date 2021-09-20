@@ -1,10 +1,10 @@
 <template>
     <button
-        class="pippolo"
+        class="Pippolo"
         @click="loopColor"
         v-bind:style="{ backgroundColor: colors[colorIndex] }"
         v-bind:disabled="isDisabled"
-    ></button>
+    />
 </template>
 
 <script>
@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style>
-.pippolo {
+.Pippolo {
     width: var(--peg-radius);
     height: var(--peg-radius);
     background-color: transparent;
@@ -66,9 +66,5 @@ export default {
     border-radius: var(--peg-radius);
     background-color: var(--sand);
     box-shadow: inset 0 0 4px 0 var(--sand-d);
-}
-
-.pippolo:disabled {
-    cursor: not-allowed;
 }
 </style>

@@ -34,6 +34,19 @@ ol {
     margin-left: 20px;
 }
 
+button {
+    cursor: pointer;
+    border: 0;
+    font-family: var(--font-main);
+    padding: var(--air-s) var(--air);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-main);
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
 .SiteHeader,
 .SiteFooter {
     position: fixed;

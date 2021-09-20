@@ -1,10 +1,10 @@
 <template>
-    <main id="app">
+    <main class="App">
         <Board />
-        <section id="feedbacks">
+        <section class="Feedbacks">
             <Feedback
                 v-for="turn in total"
-                v-bind:class="{ active: isActive(total - turn) }"
+                v-bind:class="{ 'is-active': isActive(total - turn) }"
                 v-bind:key="total - turn + 1"
                 v-bind:fb="feedback[total - turn + 1]"
             />
@@ -12,7 +12,7 @@
         <Check v-bind:style="{ transform: checkButtonTranslation }" />
         <Dialog v-if="won" status="happy" />
         <Dialog v-if="lost" status="sad" />
-        <Help @gotHelp="showHelp = false" v-bind:class="{ active: showHelp }" />
+        <Help @gotHelp="showHelp = false" v-bind:class="{ 'is-active': showHelp }" />
     </main>
 </template>
 
@@ -53,14 +53,14 @@ export default {
 </script>
 
 <style>
-#app {
+.App {
     max-width: 290px;
     width: 100%;
     position: relative;
     z-index: 1;
 }
 
-#feedbacks {
+.Feedbacks {
     max-width: calc(var(--peg-radius) + var(--air));
     width: 100%;
     background-color: var(--sand);

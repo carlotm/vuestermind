@@ -1,9 +1,9 @@
 <template>
-    <section id="board">
-        <section id="secret"></section>
+    <section class="Board">
+        <section class="Board-secret"></section>
         <Turn
             v-for="turn in total"
-            v-bind:class="{ active: isActive(total - turn) }"
+            v-bind:class="{ 'is-active': isActive(total - turn) }"
             v-bind:key="total - turn + 1"
             v-bind:index="total - turn + 1"
         />
@@ -28,15 +28,7 @@ export default {
 </script>
 
 <style>
-#secret {
-    height: var(--peg-radius);
-    line-height: var(--peg-radius);
-    border-radius: var(--border-radius);
-    background-color: var(--sand);
-    box-shadow: inset 0 0 4px 0 var(--sand-d);
-}
-
-#board {
+.Board {
     max-width: 242px;
     width: 100%;
     background-color: var(--white);
@@ -45,5 +37,13 @@ export default {
     display: flex;
     flex-direction: column;
     padding: var(--air-s);
+}
+
+.Board-secret {
+    height: var(--peg-radius);
+    line-height: var(--peg-radius);
+    border-radius: var(--border-radius);
+    background-color: var(--sand);
+    box-shadow: inset 0 0 4px 0 var(--sand-d);
 }
 </style>

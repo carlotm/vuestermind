@@ -1,5 +1,5 @@
 <template>
-    <button id="check" @click="checkTurn" v-bind:disabled="!isCurrentTurnValid"></button>
+    <button class="Check" @click="checkTurn" v-bind:disabled="!isCurrentTurnValid" />
 </template>
 
 <script>
@@ -17,18 +17,12 @@ export default {
 </script>
 
 <style>
-#check {
+.Check {
     height: var(--peg-radius);
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-main);
+    padding: 0 var(--air);
     background-color: var(--fiorentina);
-    padding-left: calc(var(--peg-radius) / 2);
-    padding-right: calc(var(--peg-radius) / 2);
+    background-color: var(--fiorentina);
     color: var(--white);
-    font-family: var(--font-main);
     font-size: 24px;
     position: absolute;
     text-transform: uppercase;
@@ -39,22 +33,22 @@ export default {
     transition: transform 0.4s ease, opacity 0.4s ease;
 }
 
-#check:before {
+.Check:before {
     content: 'check';
 }
 
-#check:disabled {
+.Check:disabled {
     cursor: not-allowed;
     opacity: 0.2;
 }
 
 @media only screen and (max-width: 767px) {
-    #check {
+    .Check {
         padding-left: calc(var(--peg-radius) / 4);
         padding-right: calc(var(--peg-radius) / 4);
     }
 
-    #check:before {
+    .Check:before {
         content: '✓';
     }
 }

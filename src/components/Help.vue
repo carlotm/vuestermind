@@ -1,14 +1,12 @@
 <template>
-    <section class="help">
+    <section class="Help">
         <p>Click on the pegs to change the colors, then on "Check" to get feedback.</p>
         <p>
             A black feedback means right color and position.<br />
             A red feedback means right color but wrong position.
         </p>
         <p>Remember that duplicate colors are not allowed!</p>
-        <div class="actions">
-            <button class="cta" @click="$emit('gotHelp')">Got it</button>
-        </div>
+        <button @click="$emit('gotHelp')">Got it</button>
     </section>
 </template>
 
@@ -19,7 +17,7 @@ export default {
 </script>
 
 <style>
-.help {
+.Help {
     background-color: var(--fiorentina);
     color: var(--white);
     border-radius: var(--border-radius);
@@ -35,13 +33,13 @@ export default {
     transition: transform 0.1s linear, opacity 0.1s linear;
 }
 
-.help.active {
+.Help.is-active {
     pointer-events: auto;
     transform: translateX(0);
     opacity: 1;
 }
 
-.help:after {
+.Help:after {
     width: 0px;
     height: 0px;
     content: '';
@@ -53,16 +51,18 @@ export default {
     border-color: var(--fiorentina) transparent transparent transparent;
 }
 
-.help > p + p {
+.Help > p + p {
     margin-top: var(--air-s);
 }
 
-.help p {
+.Help p {
     font-size: 16px;
     line-height: 1.4;
 }
 
-.help .actions {
-    text-align: right;
+.Help button {
+    background-color: var(--white);
+    margin-top: calc(var(--air) * 2.5);
+    float: right;
 }
 </style>

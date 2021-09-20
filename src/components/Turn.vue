@@ -1,5 +1,5 @@
 <template>
-    <section class="turn">
+    <section class="Turn">
         <Pippolo
             v-for="x in 4"
             v-bind:key="x"
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style>
-.turn {
+.Turn {
     height: var(--peg-radius);
     line-height: var(--peg-radius);
     border-radius: var(--border-radius);
@@ -43,7 +43,7 @@ export default {
     opacity: 0.1;
 }
 
-.turn.active {
+.Turn.is-active {
     opacity: 1;
 }
 </style>
