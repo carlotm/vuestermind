@@ -1,8 +1,8 @@
 <template>
-    <section class="dialog">
-        <div class="message">
+    <section class="Dialog">
+        <div class="Message">
             <p v-text="status === 'happy' ? 'You won :)' : 'You lost :('"></p>
-            <div class="secretRevealed" v-bind:class="status">
+            <div class="SecretRevealed" :class="status">
                 <Pippolo
                     v-for="i in 4"
                     v-bind:key="i"
@@ -11,10 +11,9 @@
                 />
             </div>
             <button
-                class="cta"
                 @click="startNewGame"
                 v-text="status === 'happy' ? 'New Game' : 'Try Again'"
-            ></button>
+            />
         </div>
     </section>
 </template>
@@ -45,7 +44,7 @@ export default {
 </script>
 
 <style>
-.dialog {
+.Dialog {
     width: 100%;
     height: 100%;
     animation-iteration-count: 1;
@@ -60,7 +59,7 @@ export default {
     left: 0;
 }
 
-.message {
+.Message {
     box-shadow: var(--main-shadow);
     background-color: var(--white);
     padding: calc(var(--air) * 2);
@@ -69,37 +68,37 @@ export default {
     text-align: center;
 }
 
-.secretRevealed {
+.SecretRevealed {
     margin-top: calc(var(--air) * 2);
 }
 
-.secretRevealed > * + * {
+.SecretRevealed > * + * {
     margin-left: var(--air-s);
 }
 
-.secretRevealed > * {
+.SecretRevealed > * {
     animation-iteration-count: infinite;
     animation-duration: 0.8s;
     animation-timing-function: ease-in;
 }
 
-.secretRevealed > *:nth-child(2) {
+.SecretRevealed > *:nth-child(2) {
     animation-delay: 0.2s;
 }
 
-.secretRevealed > *:nth-child(3) {
+.SecretRevealed > *:nth-child(3) {
     animation-delay: 0.3s;
 }
 
-.secretRevealed > *:nth-child(4) {
+.SecretRevealed > *:nth-child(4) {
     animation-delay: 0.4s;
 }
 
-.secretRevealed.happy > * {
+.SecretRevealed.happy > * {
     animation-name: dance;
 }
 
-.secretRevealed.sad > * {
+.SecretRevealed.sad > * {
     animation-name: shake;
 }
 
@@ -141,18 +140,5 @@ export default {
         opacity: 1;
         transform: scale(1);
     }
-}
-
-.cta {
-    background-color: var(--sand);
-    border-radius: var(--border-radius);
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 1px;
-    padding: var(--air-s) var(--air);
-    margin-top: calc(var(--air) * 2);
-    text-transform: uppercase;
-    border: 0;
-    cursor: pointer;
 }
 </style>
