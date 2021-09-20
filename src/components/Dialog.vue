@@ -44,16 +44,14 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../sass/settings';
-@import '../sass/utils';
-
+<style>
 .dialog {
-    @include size(100%, 100%);
+    width: 100%;
+    height: 100%;
     animation-iteration-count: 1;
     animation-name: appear;
     animation-duration: 0.2s;
-    background-color: rgba($fiorentina, 0.94);
+    background-color: var(--fiorentina);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,46 +61,46 @@ export default {
 }
 
 .message {
-    @include main-shadow;
-    background-color: $white;
-    padding: $aria * 4;
-    border-radius: $bd;
+    box-shadow: var(--main-shadow);
+    background-color: var(--white);
+    padding: calc(var(--air) * 2);
+    border-radius: var(--border-radius);
     font-size: 32px;
     text-align: center;
 }
 
 .secretRevealed {
-    margin-top: $aria * 4;
+    margin-top: calc(var(--air) * 2);
+}
 
-    > * + * {
-        margin-left: $aria;
-    }
+.secretRevealed > * + * {
+    margin-left: var(--air-s);
+}
 
-    > * {
-        animation-iteration-count: infinite;
-        animation-duration: 0.8s;
-        animation-timing-function: ease-in;
-    }
+.secretRevealed > * {
+    animation-iteration-count: infinite;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in;
+}
 
-    > *:nth-child(2) {
-        animation-delay: 0.2s;
-    }
+.secretRevealed > *:nth-child(2) {
+    animation-delay: 0.2s;
+}
 
-    > *:nth-child(3) {
-        animation-delay: 0.3s;
-    }
+.secretRevealed > *:nth-child(3) {
+    animation-delay: 0.3s;
+}
 
-    > *:nth-child(4) {
-        animation-delay: 0.4s;
-    }
+.secretRevealed > *:nth-child(4) {
+    animation-delay: 0.4s;
+}
 
-    &.happy > * {
-        animation-name: dance;
-    }
+.secretRevealed.happy > * {
+    animation-name: dance;
+}
 
-    &.sad > * {
-        animation-name: shake;
-    }
+.secretRevealed.sad > * {
+    animation-name: shake;
 }
 
 @keyframes dance {
@@ -146,13 +144,15 @@ export default {
 }
 
 .cta {
-    background-color: $sand;
-    border-radius: $bd;
+    background-color: var(--sand);
+    border-radius: var(--border-radius);
     font-size: 14px;
     font-weight: bold;
     letter-spacing: 1px;
-    padding: $aria $aria * 2;
-    margin-top: $aria * 4;
+    padding: var(--air-s) var(--air);
+    margin-top: calc(var(--air) * 2);
     text-transform: uppercase;
+    border: 0;
+    cursor: pointer;
 }
 </style>

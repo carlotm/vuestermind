@@ -1,15 +1,11 @@
 <template>
     <section class="help">
-        <p>
-            Click on the pegs to change the colors, then on "Check" to get feedback.
-        </p>
+        <p>Click on the pegs to change the colors, then on "Check" to get feedback.</p>
         <p>
             A black feedback means right color and position.<br />
             A red feedback means right color but wrong position.
         </p>
-        <p>
-            Remember that duplicate colors are not allowed!
-        </p>
+        <p>Remember that duplicate colors are not allowed!</p>
         <div class="actions">
             <button class="cta" @click="$emit('gotHelp')">Got it</button>
         </div>
@@ -22,54 +18,51 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../sass/settings';
-@import '../sass/utils';
-
+<style>
 .help {
-    background-color: $fiorentina;
-    color: $white;
-    box-shadow: 0 0 4px 0 rgba($black, 0.3);
-    border-radius: $bd;
+    background-color: var(--fiorentina);
+    color: var(--white);
+    border-radius: var(--border-radius);
     font-weight: normal;
     position: absolute;
-    left: -$aria * 2;
-    bottom: $h + $aria * 3;
-    width: calc(100% + #{$aria} * 4);
-    padding: $aria * 2;
+    left: calc(var(--air) * -1);
+    bottom: calc(var(--peg-radius) + var(--air-s) * 3);
+    width: calc(100% + var(--air) * 2);
+    padding: var(--air);
     pointer-events: none;
     transform: translateX(-100%);
     opacity: 0;
     transition: transform 0.1s linear, opacity 0.1s linear;
+}
 
-    &.active {
-        pointer-events: auto;
-        transform: translateX(0);
-        opacity: 1;
-    }
+.help.active {
+    pointer-events: auto;
+    transform: translateX(0);
+    opacity: 1;
+}
 
-    &:after {
-        @include size(0, 0);
-        content: '';
-        position: absolute;
-        bottom: -$aria;
-        left: $aria * 4.3;
-        border-style: solid;
-        border-width: 10px 10px 0 10px;
-        border-color: $fiorentina transparent transparent transparent;
-    }
+.help:after {
+    width: 0px;
+    height: 0px;
+    content: '';
+    position: absolute;
+    bottom: calc(var(--air-s) * -1);
+    left: calc(var(--air-s) * 4.3);
+    border-style: solid;
+    border-width: 10px 10px 0 10px;
+    border-color: var(--fiorentina) transparent transparent transparent;
+}
 
-    > p + p {
-        margin-top: $aria;
-    }
+.help > p + p {
+    margin-top: var(--air-s);
+}
 
-    p {
-        font-size: 16px;
-        line-height: 1.4;
-    }
+.help p {
+    font-size: 16px;
+    line-height: 1.4;
+}
 
-    .actions {
-        text-align: right;
-    }
+.help .actions {
+    text-align: right;
 }
 </style>

@@ -27,24 +27,23 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../sass/settings';
-@import '../sass/utils';
-
+<style>
 #secret {
-    @include hlh($h);
-    border-radius: $bd;
-    background-color: $sand;
-    box-shadow: inset 0 0 4px 0 rgba($black, 0.2);
+    height: var(--peg-radius);
+    line-height: var(--peg-radius);
+    border-radius: var(--border-radius);
+    background-color: var(--sand);
+    box-shadow: inset 0 0 4px 0 var(--sand-d);
 }
 
 #board {
-    @include limit-to(242px);
-    @include main-shadow;
-    background-color: $white;
-    border-radius: $bd;
+    max-width: 242px;
+    width: 100%;
+    background-color: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-main);
     display: flex;
     flex-direction: column;
-    padding: $aria;
+    padding: var(--air-s);
 }
 </style>

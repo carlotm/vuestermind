@@ -1,7 +1,8 @@
 module.exports = {
-    publicPath: '/',
-    productionSourceMap: false,
-    configureWebpack: {
-        entry: ['./src/main.js',],
-    }
-}
+  chainWebpack: (config) => {
+    config.plugin("html").tap((args) => {
+      args[0].title = "Vuestermind ✓ A master mind implementation in vue";
+      return args;
+    });
+  },
+};

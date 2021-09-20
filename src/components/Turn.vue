@@ -31,21 +31,19 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../sass/settings';
-@import '../sass/utils';
-
+<style>
 .turn {
-    @include hlh($h);
-    border-radius: $bd;
-    margin-top: $aria;
+    height: var(--peg-radius);
+    line-height: var(--peg-radius);
+    border-radius: var(--border-radius);
+    margin-top: var(--air-s);
     display: flex;
     justify-content: space-between;
     transition: opacity 0.4s ease;
     opacity: 0.1;
+}
 
-    &.active {
-        opacity: 1;
-    }
+.turn.active {
+    opacity: 1;
 }
 </style>

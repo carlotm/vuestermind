@@ -55,20 +55,20 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../sass/settings';
-@import '../sass/utils';
-
+<style>
 .pippolo {
-    @include size($h, $h);
-    @include button-reset;
+    width: var(--peg-radius);
+    height: var(--peg-radius);
+    background-color: transparent;
     border: 0;
-    border-radius: $h;
-    background-color: $sand;
-    box-shadow: inset 0 0 4px 0 rgba($black, 0.2);
+    cursor: pointer;
+    border: 0;
+    border-radius: var(--peg-radius);
+    background-color: var(--sand);
+    box-shadow: inset 0 0 4px 0 var(--sand-d);
+}
 
-    &:disabled {
-        cursor: not-allowed;
-    }
+.pippolo:disabled {
+    cursor: not-allowed;
 }
 </style>

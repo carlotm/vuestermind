@@ -52,26 +52,23 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import './sass/reset';
-@import './sass/settings';
-@import './sass/utils';
-@import './sass/main';
-
+<style>
 #app {
-    @include limit-to(290px);
+    max-width: 290px;
+    width: 100%;
     position: relative;
     z-index: 1;
 }
 
 #feedbacks {
-    @include limit-to($h + ($aria * 2));
-    @include main-shadow;
-    background-color: $sand;
-    border-radius: 0 $bd $bd 0;
-    padding-bottom: $aria;
+    max-width: calc(var(--peg-radius) + var(--air));
+    width: 100%;
+    background-color: var(--sand);
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    box-shadow: var(--shadow-main);
+    padding-bottom: var(--air-s);
     position: absolute;
-    top: $aria + $h;
+    top: calc(var(--air-s) + var(--peg-radius));
     right: 0;
     z-index: -1;
 }

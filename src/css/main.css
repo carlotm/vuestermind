@@ -1,0 +1,60 @@
+@import 'variables.css';
+@import 'reset.css';
+
+body {
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    text-rendering: optimizeSpeed;
+    line-height: 1.5;
+    font-family: var(--font-main);
+    font-size: 16px;
+    font-weight: 500;
+    background-color: var(--egg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+h1,
+h2 {
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 1.4rem;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+ul,
+ol {
+    margin-left: 20px;
+}
+
+.SiteHeader,
+.SiteFooter {
+    position: fixed;
+    background-color: var(--egg-d);
+    padding: var(--air);
+    text-align: center;
+    width: 100%;
+    left: 0;
+}
+
+.SiteHeader {
+    top: 0;
+}
+
+.SiteFooter {
+    bottom: 0;
+}
+
+#app {
+    max-width: calc(var(--board-width) + var(--peg-radius));
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
