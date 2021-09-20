@@ -27,27 +27,26 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '../sass/settings';
-@import '../sass/utils';
-
+<style>
 .feedback {
-    @include size($h, $h);
-    margin-left: $aria * 2;
-    margin-top: $aria;
+    width: var(--peg-radius);
+    height: var(--peg-radius);
+    margin-left: var(--air);
+    margin-top: var(--air-s);
     display: grid;
     grid-template: 1fr 1fr / 1fr 1fr;
     transition: opacity 0.4s ease;
     opacity: 0.1;
+}
 
-    &.active {
-        opacity: 1;
-    }
+.feedback.active {
+    opacity: 1;
 }
 
 .led {
-    @include size(8px, 8px);
-    background-color: $sand-d;
+    width: 8px;
+    height: 8px;
+    background-color: var(--sand-d);
     border-radius: 8px;
     display: block;
     position: relative;
@@ -55,20 +54,21 @@ export default {
     left: 50%;
     transform: translate(-50%, -50%);
     transition: all 0.4s;
+}
 
-    &.fb-1,
-    &.fb-0 {
-        @include size(12px, 12px);
-    }
+.led.fb-1,
+.led.fb-0 {
+    width: 12px;
+    height: 12px;
+}
 
-    &.fb-1 {
-        background-color: $black;
-        box-shadow: 0 0 2px 2px rgba($black, 0.4);
-    }
+.led.fb-1 {
+    background-color: var(--black);
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.5);
+}
 
-    &.fb-0 {
-        background-color: $mao;
-        box-shadow: 0 0 2px 2px rgba($mao, 0.4);
-    }
+.led.fb-0 {
+    background-color: var(--mao);
+    box-shadow: 0 0 2px 2px rgba(255, 64, 87, 0.5);
 }
 </style>

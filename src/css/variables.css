@@ -1,0 +1,20 @@
+:root {
+    --font-main: 'Dosis', sans-serif;
+
+    --air: 20px;
+    --air-s: 10px;
+
+    --board-width: 242px;
+    --border-radius: 10px;
+    --shadow-main: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+    --peg-radius: 48px;
+
+    --white: white;
+    --black: black;
+    --sand: #eee;
+    --sand-d: #bbb;
+    --egg: #f4ad00;
+    --egg-d: #d89800;
+    --fiorentina: #740090;
+    --mao: #ff4057;
+}

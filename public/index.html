@@ -6,25 +6,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Dosis:500,700" rel="stylesheet">
-    <title>vuestermind - a master mind implementation in vue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@500;700&display=swap" rel="stylesheet">
+    <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but vuestermind doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
-    <header>
+    <header class="SiteHeader">
         <h1>VueStermind</h1>
-        <h2>a master mind implementation in Vue</h2>
+        <h2>A master mind implementation in Vue</h2>
     </header>
     <div id="app"></div>
-    <footer>
-        <p style="float: left">
-            Mabe by <a href="https://tilde.club/~carloratm">carloratm</a>
-        </p>
-        <p style="float: right">
-            Read the <a href="https://github.com/carlotm/vuestermind">
-                source code
-            </a>
+    <footer class="SiteFooter">
+        <p>
+            Made by <a href="https://tilde.club/~carloratm">carloratm</a>,
+            read the <a href="https://github.com/carlotm/vuestermind">source code</a>.
         </p>
     </footer>
     <!-- built files will be auto injected -->
