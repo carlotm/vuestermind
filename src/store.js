@@ -1,9 +1,6 @@
-import Vue from 'vue';
 import Vuex from 'vuex';
 
 import { TOTAL, INIT_TURN, INIT_SECRET, INIT_FEEDBACK, COLORS } from './settings';
-
-Vue.use(Vuex);
 
 export const state = {
     total: TOTAL,
@@ -114,7 +111,7 @@ export const actions = {
     },
 };
 
-export default new Vuex.Store({
+export default Vuex.createStore({
     state,
     getters,
     mutations,

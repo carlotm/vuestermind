@@ -1,6 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-Vue.use(Vuex)
+import Vuex from 'vuex';
 
 import { actions, mutations, getters, state } from '@/store';
 
@@ -8,7 +6,7 @@ describe('Actions', () => {
     let store;
 
     beforeEach(() => {
-        store = new Vuex.Store({
+        store = new Vuex.createStore({
             state,
             mutations,
             actions,
@@ -36,22 +34,25 @@ describe('Actions', () => {
     });
 
     it('updates the current turn', async () => {
-        await store.dispatch('updateCurrentTurn', {index: 1, colorIndex: 5});
+        await store.dispatch('updateCurrentTurn', { index: 1, colorIndex: 5 });
         expect(store.state.currentTurn).toHaveLength(4);
         expect(store.state.currentTurn).toMatchObject([-1, 5, -1, -1]);
-        await store.dispatch('updateCurrentTurn', {index: 3, colorIndex: 3});
+        await store.dispatch('updateCurrentTurn', { index: 3, colorIndex: 3 });
         expect(store.state.currentTurn).toMatchObject([-1, 5, -1, 3]);
     });
 
     it('translation CSS property of the check button', async () => {
-        expect(store.getters.checkButtonTranslation)
-            .toEqual('translate(100%, calc(-0% - 0px))');
+        expect(store.getters.checkButtonTranslation).toEqual(
+            'translate(100%, calc(-0% - 0px))',
+        );
         store.state.current = 6;
-        expect(store.getters.checkButtonTranslation)
-            .toEqual('translate(100%, calc(-500% - 50px))');
+        expect(store.getters.checkButtonTranslation).toEqual(
+            'translate(100%, calc(-500% - 50px))',
+        );
         store.state.current = 3;
-        expect(store.getters.checkButtonTranslation)
-            .toEqual('translate(100%, calc(-200% - 20px))');
+        expect(store.getters.checkButtonTranslation).toEqual(
+            'translate(100%, calc(-200% - 20px))',
+        );
     });
 
     it('check if the turn is active', async () => {
@@ -64,19 +65,19 @@ describe('Actions', () => {
     });
 
     it('check if the turn is valid', async () => {
-        await store.dispatch('updateCurrentTurn', {index: 0, colorIndex: 1});
+        await store.dispatch('updateCurrentTurn', { index: 0, colorIndex: 1 });
         expect(store.getters.isCurrentTurnValid).toEqual(false);
-        await store.dispatch('updateCurrentTurn', {index: 1, colorIndex: 5});
+        await store.dispatch('updateCurrentTurn', { index: 1, colorIndex: 5 });
         expect(store.getters.isCurrentTurnValid).toEqual(false);
-        await store.dispatch('updateCurrentTurn', {index: 2, colorIndex: 3});
+        await store.dispatch('updateCurrentTurn', { index: 2, colorIndex: 3 });
         expect(store.getters.isCurrentTurnValid).toEqual(false);
-        await store.dispatch('updateCurrentTurn', {index: 3, colorIndex: 4});
+        await store.dispatch('updateCurrentTurn', { index: 3, colorIndex: 4 });
         expect(store.getters.isCurrentTurnValid).toEqual(true);
 
         // 2 or more pippoli with the same color are not valid
-        await store.dispatch('updateCurrentTurn', {index: 3, colorIndex: 3});
+        await store.dispatch('updateCurrentTurn', { index: 3, colorIndex: 3 });
         expect(store.getters.isCurrentTurnValid).toEqual(false);
-        await store.dispatch('updateCurrentTurn', {index: 0, colorIndex: 3});
+        await store.dispatch('updateCurrentTurn', { index: 0, colorIndex: 3 });
         expect(store.getters.isCurrentTurnValid).toEqual(false);
     });
 
