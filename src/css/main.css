@@ -47,22 +47,12 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.SiteHeader,
-.SiteFooter {
-    position: fixed;
-    background-color: var(--egg-d);
-    padding: var(--air);
-    text-align: center;
-    width: 100%;
-    left: 0;
-}
-
 .SiteHeader {
-    top: 0;
-}
-
-.SiteFooter {
-    bottom: 0;
+    position: fixed;
+    padding: var(--air);
+    width: 30%;
+    height: 100%;
+    left: 0;
 }
 
 #app {
