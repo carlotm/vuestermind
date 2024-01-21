@@ -17,7 +17,7 @@ npm install
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+NODE_OPTIONS=--openssl-legacy-provider npm run serve
 ```
 
 And then visit [http://localhost:8080](http://localhost:8080)
