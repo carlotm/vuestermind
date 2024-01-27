@@ -24,5 +24,5 @@ And then visit [http://localhost:8080](http://localhost:8080)
 
 ### Run unit tests
 ```
-npm run test:unit
+NODE_OPTIONS=--openssl-legacy-provider npm run test:unit
 ```
