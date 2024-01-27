@@ -2,5 +2,11 @@
   "packages": ["nodejs@latest"],
   "env": {
       "NODE_OPTIONS": "--openssl-legacy-provider"
+  },
+  "shell": {
+    "scripts": {
+      "deploy": "npm run build",
+      "test": "npm run test:unit"
+    }
   }
 }
